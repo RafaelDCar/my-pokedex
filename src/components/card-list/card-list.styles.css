@@ -1,7 +1,18 @@
-.card-list {
-  width: 85vw;
+.wrapper {
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  padding: 24px;
 }
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+}
+
+@media(min-width: 321px) {
+  .card-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+}
+

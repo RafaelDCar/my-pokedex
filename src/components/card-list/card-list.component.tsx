@@ -42,9 +42,6 @@ const list = [
 
 ]
 
-
-
-
 const CardListComponent: React.FC = () => {
 
   const [pokemonList, setPokemonList] = useState(list);
@@ -52,19 +49,24 @@ const CardListComponent: React.FC = () => {
 
   const onSearchPokemon = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchedPokemon = pokemonList.filter((pokemon: any) => pokemon.name.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase()));
+    setPokemonList(searchedPokemon);
     console.log(searchedPokemon);
+  }
 
+  const removeFilter = () => {
+    setPokemonList(list);
   }
 
   return (
 
-    <div>
+    <div className='wrapper'>
       <input
         type='search'
         value={searchedPokemon} 
         placeholder='Find a pokemon!' 
         onChange={onSearchPokemon} 
       />
+      <button onClick={removeFilter}>Remove Filter</button>
       <div className='card-list'>
         {pokemonList.map((pokemon) => {
           return <div key={pokemon.id}><CardComponent pokemon={pokemon} /></div>
