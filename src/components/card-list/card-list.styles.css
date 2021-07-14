@@ -1,6 +1,7 @@
 .wrapper {
   margin: 0 auto;
   padding: 24px;
+  max-width: 1024px;
 }
 
 .card-list {
