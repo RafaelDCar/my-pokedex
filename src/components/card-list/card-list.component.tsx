@@ -48,12 +48,13 @@ const CardListComponent: React.FC = () => {
   const [searchedPokemon, setSearchedPokemon] = useState<string | undefined>();
 
   const onSearchPokemon = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchedPokemon = pokemonList.filter((pokemon: any) => pokemon.name.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase()));
+    const searchedPokemon = pokemonList.filter((pokemon: any) => 
+      pokemon.name.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase()));
     setPokemonList(searchedPokemon);
-    console.log(searchedPokemon);
   }
 
   const removeFilter = () => {
+    setSearchedPokemon('');
     setPokemonList(list);
   }
 
