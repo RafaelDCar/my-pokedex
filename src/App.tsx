@@ -1,12 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
-import CardListComponent from './components/card-list/card-list.component';
+import Home from './pages/home/home';
+import RouterApp from './routes';
 
 const App = () => {
 
- return (
+  return (
     <div className="App">
-      <CardListComponent />
+    <BrowserRouter>
+      <RouterApp></RouterApp>
+    </BrowserRouter>
+
     </div>
   );
 }
