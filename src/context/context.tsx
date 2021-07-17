@@ -1,8 +1,11 @@
-import React, { createContext, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import React, { createContext, useEffect, useState } from 'react';
+import { LOAD_POKEMONS } from '../graphData/Query';
 
 type Pokemon = {
   id: number;
-  name: string
+  name: string;
+  url: string;
 }
 
 type PokemonContextType = {
@@ -55,7 +58,16 @@ export const PokemonContext = createContext({} as PokemonContextType);
 
 export const PokemonProvider: React.FC = ({ children }) => {
 
-  const [pokemons, setPokemons] = useState<Pokemon[]>(initialPokemonList);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  
+  const {data} = useQuery(LOAD_POKEMONS)
+
+  useEffect(() => {
+    if(data) {
+      console.log('context effect', data)
+      setPokemons(data.pokemons)
+    }
+  }, [data])
 
   const onSearchPokemon = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -66,7 +78,7 @@ export const PokemonProvider: React.FC = ({ children }) => {
   }
 
   const onRemoveFilters = (event: any) => {
-    setPokemons(initialPokemonList)
+    setPokemons(pokemons)
   }
 
   return (

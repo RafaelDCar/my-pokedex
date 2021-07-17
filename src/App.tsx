@@ -1,16 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Home from './pages/home/home';
+import { PokemonGraphProvider } from './graphData/provider';
 import RouterApp from './routes';
+
 
 const App = () => {
 
   return (
     <div className="App">
-    <BrowserRouter>
-      <RouterApp></RouterApp>
-    </BrowserRouter>
+      <PokemonGraphProvider>
+        <BrowserRouter>
+          <RouterApp></RouterApp>
+        </BrowserRouter>
+
+      </PokemonGraphProvider>
 
     </div>
   );
